@@ -15,11 +15,11 @@
         if (!options) {
             pcbOptions = os._internals.ps.processTable[name].options;
         } else if (options == 'pipeIn') {
-			os._internals.ps.processTable[name].options.pipeIn = true;
-			pcbOptions = os._internals.ps.processTable[name].options;
-		} else if (options == 'pipeOut') {
-			os._internals.ps.processTable[name].options.pipeOut = true;
-			pcbOptions = os._internals.ps.processTable[name].options;
+		os._internals.ps.processTable[name].options.pipeIn = true;
+		pcbOptions = os._internals.ps.processTable[name].options;
+	} else if (options == 'pipeOut') {
+		os._internals.ps.processTable[name].options.pipeOut = true;
+		pcbOptions = os._internals.ps.processTable[name].options;
         } else {
             pcbOptions = options;
         }
@@ -50,20 +50,20 @@
                 args = [];
             }
             var pipeInFlag = false;
-			var pipeOutFlag = false;
-			if(options != null) {
-				if(options.hasOwnProperty("pipeIn")) {
-					pipeInFlag = options.pipeIn;
-				}
-				if(options.hasOwnProperty("pipeOut")) {
-					pipeOutFlag = options.pipeOut;
-				}
-			}	
+	    var pipeOutFlag = false;
+	    if(options != null) {
+		if(options.hasOwnProperty("pipeIn")) {
+			pipeInFlag = options.pipeIn;
+		}
+		if(options.hasOwnProperty("pipeOut")) {
+			pipeOutFlag = options.pipeOut;
+		}
+	    }	
             cb({
                 stdin: pcb.streams.stdin,
                 stdout: pcb.streams.stdout,
                 pipeIn: pipeInFlag,
-				pipeOut: pipeOutFlag
+		pipeOut: pipeOutFlag
             }, args);
         };
 
