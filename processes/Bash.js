@@ -36,6 +36,7 @@
         switch(command[0]){
             case "ls": // need to figure out how to play with the streams
                 var response = Object.getOwnPropertyNames(os._internals.fs.disk).join("<br>");
+				
 				// Determine if ls should be piped to other process; if not, print to console
 				if(command[1] == "|" && command[1] != undefined) {
 					if(command[2] == undefined)
@@ -161,7 +162,7 @@
                         pcb[i].state === os._internals.ps.states.WAITING)
                         ps += "&nbsp;&nbsp;" + pcb[i].id.toString() + "&nbsp;&nbsp;" + pcb[i].name + "<br>";
                 }
-
+				
 				// Determine if ps should be piped to other process; if not, print to console
 				if(command[1] == "|" && command[1] != undefined) {
 					if(command[2] == undefined)
