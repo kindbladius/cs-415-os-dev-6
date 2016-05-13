@@ -5,6 +5,15 @@ var os = {
     ps: {},
     bin: {},
     _internals: {
+		sec: {
+			curMode: '',
+			modes: {
+				NONE: 'NONE',
+				REG: 'REG',
+				SUP: 'SUP'
+			},
+			user: ''
+		},
         fs: {
             disk:{},
             operationQueue: []
