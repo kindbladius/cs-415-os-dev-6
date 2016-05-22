@@ -162,6 +162,7 @@
 				var theGroup = lines[i].split(",");
 				
 				if(theGroup[0] == groupName) {
+					os._internals.fs.disk[file].acl.group.users = [];
 					for(var j = 1; j < theGroup.length; j++)
 						os._internals.fs.disk[file].acl.group.users.push(theGroup[j]);
 					groupFound = true;
