@@ -16,10 +16,11 @@
         meta: {},
 		acl: {
 			owner: {
-				user: '',
-				permissions: ''
+				user: 'tomas',
+				permissions: 'rwx'
 			},
 			group: {
+				name: 'manage',
 				users: [],
 				permissions: ''
 			},
@@ -43,10 +44,11 @@
         meta: {},
 		acl: {
 			owner: {
-				user: '',
-				permissions: ''
+				user: 'tomas',
+				permissions: 'rwx'
 			},
 			group: {
+				name: 'login',
 				users: [],
 				permissions: ''
 			},
@@ -71,6 +73,7 @@
 				permissions: 'rwx'
 			},
 			group: {
+				name: 'users',
 				users: [],
 				permissions: ''
 			},
@@ -102,6 +105,7 @@
 				permissions: 'rwx'
 			},
 			group: {
+				name: 'login',
 				users: [],
 				permissions: ''
 			},
@@ -222,6 +226,7 @@
 				permissions: 'rwx'
 			},
 			group: {
+				name: 'manage',
 				users: [],
 				permissions: ''
 			},
@@ -245,6 +250,30 @@
 				permissions: ''
 			},
 			group: {
+				name: 'sys',
+				users: [],
+				permissions: ''
+			},
+			universe: {
+				permissions: ''
+			}
+		}
+	};
+	
+	os._internals.fs.disk['Groups.csv'] = {
+		data:	"login,matt,edwin,logan,tomas,darrel\n" +
+				"sys,logan,tomas\n" +
+				"manage,logan,matt,edwin\n" +
+				"users,darrel,matt,edwin\n",
+				
+		meta: {},
+		acl: {
+			owner: {
+				user: '',
+				permissions: ''
+			},
+			group: {
+				name: 'sys',
 				users: [],
 				permissions: ''
 			},
