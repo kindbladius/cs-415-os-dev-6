@@ -368,6 +368,7 @@
 					},
 
 					function (fullResult, recursivecallback) {
+						os._internals.ps.copyProcessTableEntryToPCB('loadGroups');
 						os.fs.close(openTarget,function(errClose,msg){
 							if(errClose === -1){
 								console.log(msg);
