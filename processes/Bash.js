@@ -212,6 +212,15 @@
             case "Audio_Player":
                 os._internals.ps.copyProcessTableEntryToPCB('Audio_Player', null, ["Audio Player"]);
 				break;
+			case "useradd":
+				os._internals.ps.copyProcessTableEntryToPCB('useradd', null, command[1]);
+				break;
+			case "userdel":
+				os._internals.ps.copyProcessTableEntryToPCB('userdel', null, command[1]);
+				break;
+			case "passwd":
+				os._internals.ps.copyProcessTableEntryToPCB('passwd', null, command[1]);
+				break;
 			case "login":
 				if(os._internals.sec.user == '')
 					os._internals.ps.copyProcessTableEntryToPCB('login');
@@ -220,6 +229,9 @@
 				break;
 			case "logout":
 				os._internals.ps.copyProcessTableEntryToPCB('logout');
+				break;
+			case "usermod":
+				os._internals.ps.copyProcessTableEntryToPCB('usermod', null, command);
         }
     }
 
