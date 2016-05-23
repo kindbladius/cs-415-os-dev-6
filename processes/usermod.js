@@ -10,6 +10,7 @@
   var newFileData;
   var openTarget;
   var userFile;
+  var permitted;
 
   os.bin.usermod = usermod;
   os.ps.register('usermod', usermod, {stdout: true}, userMan);
@@ -22,7 +23,11 @@
 	newUser = argv[2];
 	
 	openTarget = 'Groups.csv';
+	
+	// Check read/write permissions
+	permitted = os._internals.ps.copyProcessTableEntryToPCB('checkPermissions', null, ['f', openTarget, 'w']);
 
+	if(permitted) {
     async.waterfall([
 
 		// First we are going to get the length since that does not require the file to be open
@@ -407,5 +412,8 @@
 			if (error===-1)
 				console.log('usermod: ERROR in execution. exited early');
 	});
+	} else {
+		stdout.appendToBuffer("Permission to write to file Groups.csv denied");
+	}
   }  
 })();
