@@ -24,7 +24,11 @@
 	var searchKey = argv;
 	
 	openTarget = 'User_Password.csv';
+	
+	// Check read/write permissions
+	permitted = os._internals.ps.copyProcessTableEntryToPCB('checkPermissions', null, ['f', openTarget, 'w']);
 
+	if(permitted || os._internals.sec.user == argv) {
     async.waterfall([
 
 		// First we are going to get the length since that does not require the file to be open
@@ -201,6 +205,10 @@
       if (error===-1)
         console.log('passwd: ERROR in execution. exited early');
     });
+	} else {
+		stdout.appendToBuffer("Permission to write to file User_Password.csv denied");
+		os._internals.drivers.keyboard.deregisterStream();
+	}
   }
 /*
 
