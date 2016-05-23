@@ -9,6 +9,7 @@
   var lines;
   var newFileData;
   var openTarget;
+  var permitted;
 
   os.bin.useradd = useradd;
   os.ps.register('useradd', useradd, {stdin: useraddListener, stdout: true, pipeIn: false},userMan);
@@ -23,7 +24,11 @@
 	var newUser = argv;
 	
 	openTarget = 'User_Password.csv';
+	
+	// Check read/write permissions
+	permitted = os._internals.ps.copyProcessTableEntryToPCB('checkPermissions', null, ['f', openTarget, 'w']);
 
+	if(permitted) {
     async.waterfall([
 
 		// First we are going to get the length since that does not require the file to be open
@@ -198,6 +203,10 @@
       if (error===-1)
         console.log('useradd: ERROR in execution. exited early');
     });
+	} else {
+		stdout.appendToBuffer("Permission to write to file User_Password.csv denied");
+		os._internals.drivers.keyboard.deregisterStream();
+	}
   }
 /*
 
@@ -305,6 +314,6 @@
 				console.log('useradd Done');
 			}
 		});
-    }
+	} 
 
 })();
